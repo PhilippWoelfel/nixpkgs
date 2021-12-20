@@ -104,6 +104,7 @@ let
       kapptemplate = callPackage ./kapptemplate.nix { };
       kate = callPackage ./kate.nix {};
       katomic = callPackage ./katomic.nix {};
+      kbackup = callPackage ./kbackup.nix {};
       kblackbox = callPackage ./kblackbox.nix {};
       kblocks = callPackage ./kblocks.nix {};
       kbounce = callPackage ./kbounce.nix {};

@@ -1175,7 +1175,7 @@ mapAliases ({
     granatier gwenview
     k3b
     kaddressbook kalzium kapptemplate kapman kate katomic
-    kblackbox kblocks kbounce
+    kbackup kblackbox kblocks kbounce
     kcachegrind kcalc kcharselect kcolorchooser
     kdenlive kdf kdialog kdiamond
     keditbookmarks
