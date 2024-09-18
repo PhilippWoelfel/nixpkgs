@@ -1,14 +1,18 @@
-{ lib, stdenvNoCC, fetchurl, makeBinaryWrapper, jre_headless }:
+{ lib
+, stdenvNoCC
+, fetchurl
+# , fetchFromGitHub
+, makeBinaryWrapper
+, jre_headless
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "ltex-ls-plus";
   version = "18.0.0";
 
-  src = fetchFromGitHub {
-    owner = "ltex-plus";
-    repo = pname;
-    rev = "v${version}";
-    hash = "sha256-aW1TfTckqhCmhjcvduISY9qAdKPM/0cobxbIrCq5JkQ=";
+  src = fetchurl {
+    url = "https://github.com/ltex-plus/${pname}/releases/download/${version}/${pname}-${version}.tar.gz";
+    sha256 = "sha256-x3kaxMclxUXHLKm09H+HWHAwfRk5dCYwO1wJijnC6sc=";
   };
 
   nativeBuildInputs = [ makeBinaryWrapper ];
@@ -20,7 +24,8 @@ stdenvNoCC.mkDerivation rec {
     cp -rfv bin/ lib/ $out
     rm -fv $out/bin/.lsp-cli.json $out/bin/*.bat
     for file in $out/bin/{ltex-ls,ltex-cli}; do
-      wrapProgram $file --set JAVA_HOME "${jre_headless}"
+      wrapProgram "$file"-plus --set JAVA_HOME "${jre_headless}"
+      ln -s "$file"-plus "$file"
     done
 
     runHook postInstall
